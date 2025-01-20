@@ -1,6 +1,6 @@
 # NogyangSpigotCraftBukkit / 녹양스피곳크래프트버킷
 Paper와 Spigot을 포크한 뒤 스펀지를 추가한 서버 구현체.\
-Copyright (C) 2022-2025, Approximaster Studios 2004. All Rights Reversed.\
+Copyright (C) 2022-2025, Approximaster Studios 2004. All Rights Reversed.
  
 
 # Spigot으로부터 떨어져나가지 않겠습니다.
