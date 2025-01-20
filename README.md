@@ -18,7 +18,8 @@ NogyangSpigotCraftBukkit JAR는 배포되지 않기 때문에, 직접 컴파일�
 ```
 NogyangSpigotCraftBukkit-Paperclip-1.21.4-R0.1-SNAPSHOT-Reobf.jar (페이퍼 전용 버전 관리자 + 스피곳 매핑, 메인 파일)
 NogyangSpigotCraftBukkit-Bundler-1.21.4-R0.1-SNAPSHOT-Reobf.jar (바닐라 버전 관리자 + 스피곳 매핑)
-NogyangSpigotCraftBukkit-Bundler-1.21.4-R0.1-SNAPSHOT-Reobf.jar (바닐라 버전 관리자 + 바닐라 매핑)
+NogyangSpigotCraftBukkit-Paperclip-1.21.4-R0.1-SNAPSHOT-Mojmap.jar (페이퍼 전용 버전 관리자 + 바닐라 매핑)
+NogyangSpigotCraftBukkit-Bundler-1.21.4-R0.1-SNAPSHOT-Mojmap.jar (바닐라 버전 관리자 + 바닐라 매핑)
 ```
 
 # 서버 실행
