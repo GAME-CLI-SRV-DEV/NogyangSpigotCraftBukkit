@@ -77,12 +77,12 @@ paperweight {
                 register("api") {
                     upstreamDir = paperDir.dir("Paper-API")
                     patchDir = layout.projectDirectory.dir("patches/api")
-                    outputDir = layout.projectDirectory.dir("NogyangSpigotCraftBukkit-API-BucketOfGlowingRainbowSponge")
+                    outputDir = layout.projectDirectory.dir("NogyangSpigot-API")
                 }
                 register("server") {
                     upstreamDir = paperDir.dir("Paper-Server")
                     patchDir = layout.projectDirectory.dir("patches/server")
-                    outputDir = layout.projectDirectory.dir("NogyangSpigotCraftBukkit-Server-BucketOfGlowingRainbowSponge")
+                    outputDir = layout.projectDirectory.dir("NogyangSpigotCraftBukkit-Server")
                     importMcDev = true
                 }
                 register("generatedApi") {
