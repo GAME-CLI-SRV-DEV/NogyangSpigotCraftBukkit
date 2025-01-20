@@ -1,0 +1,20 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Outfit7TSB <sunnybunnies09@naver.com>
+Date: Mon, 20 Jan 2025 23:09:48 +0900
+Subject: [PATCH] glowkit patch
+
+
+diff --git a/src/main/java/org/bukkit/plugin/java/PluginClassLoader.java b/src/main/java/org/bukkit/plugin/java/PluginClassLoader.java
+index 7e4f7cb2afbc145e532285c793573ad107bc3033..95a0f6d5646e1b1e746c36ebf55a8f078097966c 100644
+--- a/src/main/java/org/bukkit/plugin/java/PluginClassLoader.java
++++ b/src/main/java/org/bukkit/plugin/java/PluginClassLoader.java
+@@ -199,9 +199,6 @@ public final class PluginClassLoader extends URLClassLoader implements io.paperm
+ 
+     @Override
+     protected Class<?> findClass(String name) throws ClassNotFoundException {
+-        if (name.startsWith("org.bukkit.") || name.startsWith("net.minecraft.")) {
+-            throw new ClassNotFoundException(name);
+-        }
+         Class<?> result = classes.get(name);
+ 
+         if (result == null) {
