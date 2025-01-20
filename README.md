@@ -8,4 +8,4 @@ NogyangSpigotCraftBukkit JAR는 배포되지 않기 때문에, 직접 컴파일�
 `gradlew create(Reobf/Mojmap)Paperclipjar` 명령으로 직접 빌드해야 합니다. 
 
 # 서버 실행
-대부분의 경우는 바닐라 매핑 Paperclip을 사용하지만, NogyangSpigot의 경우 Reobf를 사용합니다.
+대부분의 경우는 바닐라 매핑 Paperclip을 사용하지만, NogyangSpigot의 경우 Reobf를 사용합니다. 모던 플러그인이 이 환경에서도 작동하는지 궁금하네요.
