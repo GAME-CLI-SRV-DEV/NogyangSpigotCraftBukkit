@@ -1,6 +1,11 @@
 # NogyangSpigotCraftBukkit / 녹양스피곳크래프트버킷
 ![1000016478](https://github.com/user-attachments/assets/ca90d992-5590-4373-8e49-16e0610cf991)
 
+> [!WARNING]
+업데이트 전용 분기입니다. <br>
+패치는 여기에 저장될 수 없습니다. <br>
+
+
 NogyangSpigot is a Fork Of Paper and Spigot with Glowkit Patches and Sponge API, Rainbow API(PluginReference In Project Rainbow) Integrated on it, .\
 Paper와 Spigot을 포크한 뒤 스펀지 API, 레인보우 API, 글로우킷 패치를 추가한 서버 버킷.\
 Copyright (C) 2022-2025, Approximaster Studios 2004. All Rights Reversed.
