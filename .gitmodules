@@ -1,3 +1,6 @@
 [submodule "work/Paper"]
 	path = work/Paper
 	url = https://github.com/GAME-CLI-SRV-DEV/Paper
+[submodule "work/SpongeAPI"]
+	path = work/SpongeAPI
+	url = https://github.com/SpongePowered/SpongeAPI
