@@ -1,0 +1,20 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Outfit7TSB <sunnybunnies09@naver.com>
+Date: Wed, 22 Jan 2025 00:20:36 +0900
+Subject: [PATCH] Add BeodeulSponge API
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index c56ec764659e18031b639575a52d394519e54e61..06460c7599f69bca175733fbcb1876ef226c6da7 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -25,7 +25,8 @@ abstract class MockitoAgentProvider : CommandLineArgumentProvider {
+ // Paper end - configure mockito agent that is needed in newer java versions
+ 
+ dependencies {
+-    implementation(project(":NogyangSpigot-API"))
++    implementation(project(":NogyangSpigot-API")) // 버킷-스피곳-페이퍼-레인보우 통합 API
++	implementation(project(":BeodeulSponge-API")) // 스펀지-글로우스톤 API
+     implementation("ca.spottedleaf:concurrentutil:0.0.3") // Paper - Add ConcurrentUtil dependency
+     // Paper start
+     implementation("org.jline:jline-terminal-ffm:3.27.1") // use ffm on java 22+
