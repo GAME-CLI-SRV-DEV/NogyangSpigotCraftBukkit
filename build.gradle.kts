@@ -53,6 +53,7 @@ subprojects {
 }
 
 val paperDir = layout.projectDirectory.dir("work/Paper")
+val spongeDir = layout.projectDirectory.dir("work/SpongeAPI") // 스펀지 예비 등록
 val initSubmodules by tasks.registering {
     outputs.upToDateWhen { false }
     doLast {
@@ -78,6 +79,11 @@ paperweight {
                     upstreamDir = paperDir.dir("Paper-API")
                     patchDir = layout.projectDirectory.dir("patches/api")
                     outputDir = layout.projectDirectory.dir("NogyangSpigot-API")
+                }
+                register("spongeapi") {
+                    upstreamDir = spongeDir
+                    patchDir = layout.projectDirectory.dir("patches/spongeapi")
+                    outputDir = layout.projectDirectory.dir("BeodeulSponge-API")
                 }
                 register("server") {
                     upstreamDir = paperDir.dir("Paper-Server")
