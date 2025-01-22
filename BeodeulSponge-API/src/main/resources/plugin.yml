@@ -1,0 +1,3 @@
+name: Bukkit2Sponge
+main: net.glowstone.bukkit2sponge.Bukkit2Sponge
+version: ${version}
