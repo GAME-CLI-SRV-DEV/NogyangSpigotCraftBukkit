@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":NogyangSpigot-API")) // 12.0.0
     implementation("org.spongepowered:spongeapi:12.0.0-SNAPSHOT") // 12.0.0
     implementation("com.google.inject:guice:4.0")
     implementation("org.spongepowered:configurate-hocon:4.1.2")
