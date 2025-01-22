@@ -80,11 +80,6 @@ paperweight {
                     patchDir = layout.projectDirectory.dir("patches/api")
                     outputDir = layout.projectDirectory.dir("NogyangSpigot-API")
                 }
-                register("spongeapi") {
-                    upstreamDir = spongeDir
-                    patchDir = layout.projectDirectory.dir("patches/spongeapi")
-                    outputDir = layout.projectDirectory.dir("BeodeulSponge-API")
-                }
                 register("server") {
                     upstreamDir = paperDir.dir("Paper-Server")
                     patchDir = layout.projectDirectory.dir("patches/server")
