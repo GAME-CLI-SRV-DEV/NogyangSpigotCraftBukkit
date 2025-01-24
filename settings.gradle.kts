@@ -11,4 +11,4 @@ plugins {
 
 rootProject.name = "NogyangSpigotCraftBukkit"
 
-include("NogyangSpigot-API", "BeodeulSponge-API-New", "NogyangSpigotCraftBukkit-Server")
+include("NogyangSpigot-API", "NogyangSpigotCraftBukkit-Server")
