@@ -29,7 +29,7 @@ NogyangSpigotCraftBukkit-Bundler-1.21.4-R0.1-SNAPSHOT-Mojmap.jar (바닐라 버�
 
 # 구조
 ```          
-버킷+스피곳+페이퍼+레인보우 통합 API(녹양이API) -> 중앙 서버(NogyangSpigotCraftBukkit-Server) <- (버들이API)스펀지+글로우스톤 통합 API
+버킷+스피곳+페이퍼+레인보우 통합 API(녹양이API) -> 중앙 서버(NogyangSpigotCraftBukkit-Server) <- (버들이API)글로우스톤+스펀지 API
 녹양이API: NogyangSpigot-API의 공식 명칭
 버들이API: BeodeulSponge-API의 공식 명칭
 ```
