@@ -1,0 +1,214 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Outfit7TSB <sunnybunnies09@naver.com>
+Date: Sat, 25 Jan 2025 00:07:15 +0900
+Subject: [PATCH] remove final again
+
+
+diff --git a/src/main/java/io/papermc/paper/util/Holderable.java b/src/main/java/io/papermc/paper/util/Holderable.java
+index 746c14b1792dd060a9cf19865c10cb93e1e7f688..f13492a95fbe77cd784f1aac0fd6e13e5e6a5455 100644
+--- a/src/main/java/io/papermc/paper/util/Holderable.java
++++ b/src/main/java/io/papermc/paper/util/Holderable.java
+@@ -36,7 +36,7 @@ public interface Holderable<M> extends Handleable<M> {
+                 }
+                 yield registry.get(Key.key(string));
+             }
+-            case JsonObjectWrapper(final JsonObject element) -> {
++            case JsonObjectWrapper(JsonObject element) -> {
+                 if (!(registry instanceof final CraftRegistry<?, ?> craftRegistry) || !craftRegistry.supportsDirectHolders()) {
+                     throw new IllegalArgumentException("Cannot deserialize direct holders for " + registry);
+                 }
+diff --git a/src/main/java/net/minecraft/world/item/crafting/Ingredient.java b/src/main/java/net/minecraft/world/item/crafting/Ingredient.java
+index 879c8fe1f20decc793cfa39e686b61d521bd76ba..469b811c7f9d1a40478f1216e80ea0f9e615539e 100644
+--- a/src/main/java/net/minecraft/world/item/crafting/Ingredient.java
++++ b/src/main/java/net/minecraft/world/item/crafting/Ingredient.java
+@@ -20,33 +20,41 @@ import net.minecraft.world.item.ItemStack;
+ import net.minecraft.world.item.Items;
+ import net.minecraft.world.item.crafting.display.SlotDisplay;
+ import net.minecraft.world.level.ItemLike;
++// CraftBukkit start
++import java.util.List;
++import javax.annotation.Nullable;
++// CraftBukkit end
+ 
+ public final class Ingredient implements StackedContents.IngredientInfo<io.papermc.paper.inventory.recipe.ItemOrExact>, Predicate<ItemStack> { // Paper - Improve exact choice recipe ingredients
+-    public static final StreamCodec<RegistryFriendlyByteBuf, Ingredient> CONTENTS_STREAM_CODEC = ByteBufCodecs.holderSet(Registries.ITEM)
+-        .map(Ingredient::new, ingredient -> ingredient.values);
+-    public static final StreamCodec<RegistryFriendlyByteBuf, Optional<Ingredient>> OPTIONAL_CONTENTS_STREAM_CODEC = ByteBufCodecs.holderSet(Registries.ITEM)
+-        .map(
+-            items -> items.size() == 0 ? Optional.empty() : Optional.of(new Ingredient((HolderSet<Item>)items)),
+-            optional -> optional.map(ingredient -> ingredient.values).orElse(HolderSet.direct())
+-        );
++
++    public static final StreamCodec<RegistryFriendlyByteBuf, Ingredient> CONTENTS_STREAM_CODEC = ByteBufCodecs.holderSet(Registries.ITEM).map(Ingredient::new, (recipeitemstack) -> {
++        return recipeitemstack.values;
++    });
++    public static final StreamCodec<RegistryFriendlyByteBuf, Optional<Ingredient>> OPTIONAL_CONTENTS_STREAM_CODEC = ByteBufCodecs.holderSet(Registries.ITEM).map((holderset) -> {
++        return holderset.size() == 0 ? Optional.empty() : Optional.of(new Ingredient(holderset));
++    }, (optional) -> {
++        return (HolderSet) optional.map((recipeitemstack) -> {
++            return recipeitemstack.values;
++        }).orElse(HolderSet.direct());
++    });
+     public static final Codec<HolderSet<Item>> NON_AIR_HOLDER_SET_CODEC = HolderSetCodec.create(Registries.ITEM, Item.CODEC, false);
+-    public static final Codec<Ingredient> CODEC = ExtraCodecs.nonEmptyHolderSet(NON_AIR_HOLDER_SET_CODEC)
+-        .xmap(Ingredient::new, ingredient -> ingredient.values);
++    public static final Codec<Ingredient> CODEC = ExtraCodecs.nonEmptyHolderSet(Ingredient.NON_AIR_HOLDER_SET_CODEC).xmap(Ingredient::new, (recipeitemstack) -> {
++        return recipeitemstack.values;
++    });
+     private final HolderSet<Item> values;
+     // CraftBukkit start
+-    @javax.annotation.Nullable
++    @Nullable
+     private java.util.Set<ItemStack> itemStacks; // Paper - Improve exact choice recipe ingredients
+ 
+     public boolean isExact() {
+         return this.itemStacks != null;
+     }
+ 
+-    @javax.annotation.Nullable
+     public java.util.Set<ItemStack> itemStacks() { // Paper - Improve exact choice recipe ingredients
+         return this.itemStacks;
+     }
+ 
+-    public static Ingredient ofStacks(java.util.List<ItemStack> stacks) {
++    public static Ingredient ofStacks(List<ItemStack> stacks) {
+         Ingredient recipe = Ingredient.of(stacks.stream().map(ItemStack::getItem));
+         // Paper start - Improve exact choice recipe ingredients
+         recipe.itemStacks = net.minecraft.world.item.ItemStackLinkedSet.createTypeAndComponentsSet();
+@@ -57,21 +65,27 @@ public final class Ingredient implements StackedContents.IngredientInfo<io.paper
+     }
+     // CraftBukkit end
+ 
+-    private Ingredient(HolderSet<Item> values) {
+-        values.unwrap().ifRight(list -> {
++    private Ingredient(HolderSet<Item> entries) {
++        entries.unwrap().ifRight((list) -> {
+             if (list.isEmpty()) {
+                 throw new UnsupportedOperationException("Ingredients can't be empty");
+             } else if (list.contains(Items.AIR.builtInRegistryHolder())) {
+                 throw new UnsupportedOperationException("Ingredient can't contain air");
+             }
+         });
+-        this.values = values;
++        this.values = entries;
+     }
+ 
+     public static boolean testOptionalIngredient(Optional<Ingredient> ingredient, ItemStack stack) {
+-        return ingredient.<Boolean>map(ingredient1 -> ingredient1.test(stack)).orElseGet(stack::isEmpty);
++        Optional optional1 = ingredient.map((recipeitemstack) -> {
++            return recipeitemstack.test(stack);
++        });
++
++        Objects.requireNonNull(stack);
++        return (Boolean) optional1.orElseGet(stack::isEmpty);
+     }
+ 
++    /** @deprecated */
+     @Deprecated
+     public Stream<Holder<Item>> items() {
+         return this.values.stream();
+@@ -81,31 +95,33 @@ public final class Ingredient implements StackedContents.IngredientInfo<io.paper
+         return this.values.size() == 0;
+     }
+ 
+-    @Override
+-    public boolean test(ItemStack stack) {
++    public boolean test(ItemStack itemstack) {
+         // CraftBukkit start
+         if (this.isExact()) {
+-            return this.itemStacks.contains(stack); // Paper - Improve exact choice recipe ingredients (hashing FTW!)
++            return this.itemStacks.contains(itemstack); // Paper - Improve exact choice recipe ingredients (hashing FTW!)
+         }
+         // CraftBukkit end
+-        return stack.is(this.values);
++        return itemstack.is(this.values);
+     }
+ 
+     // Paper start - Improve exact choice recipe ingredients
+     @Override
+-    public boolean acceptsItem(final io.papermc.paper.inventory.recipe.ItemOrExact itemOrExact) {
+-        return switch (itemOrExact) {
+-            case io.papermc.paper.inventory.recipe.ItemOrExact.Item(final Holder<Item> item) ->
++    public boolean acceptsItem(final io.papermc.paper.inventory.recipe.ItemOrExact holder) {
++        return switch (holder) {
++            case io.papermc.paper.inventory.recipe.ItemOrExact.Item(Holder<Item> item) ->
+                 !this.isExact() && this.values.contains(item);
+-            case io.papermc.paper.inventory.recipe.ItemOrExact.Exact(final ItemStack exact) ->
++            case io.papermc.paper.inventory.recipe.ItemOrExact.Exact(ItemStack exact) ->
+                 this.isExact() && this.itemStacks.contains(exact);
+         };
+         // Paper end - Improve exact choice recipe ingredients
+     }
+ 
+-    @Override
+-    public boolean equals(Object other) {
+-        return other instanceof Ingredient ingredient && Objects.equals(this.values, ingredient.values) && Objects.equals(this.itemStacks, ingredient.itemStacks); // CraftBukkit
++    public boolean equals(Object object) {
++        if (object instanceof Ingredient recipeitemstack) {
++            return Objects.equals(this.values, recipeitemstack.values) && Objects.equals(this.itemStacks, recipeitemstack.itemStacks); // CraftBukkit
++        } else {
++            return false;
++        }
+     }
+ 
+     public static Ingredient of(ItemLike item) {
+@@ -113,15 +129,17 @@ public final class Ingredient implements StackedContents.IngredientInfo<io.paper
+     }
+ 
+     public static Ingredient of(ItemLike... items) {
+-        return of(Arrays.stream(items));
++        return Ingredient.of(Arrays.stream(items));
+     }
+ 
+-    public static Ingredient of(Stream<? extends ItemLike> items) {
+-        return new Ingredient(HolderSet.direct(items.map(item -> item.asItem().builtInRegistryHolder()).toList()));
++    public static Ingredient of(Stream<? extends ItemLike> stacks) {
++        return new Ingredient(HolderSet.direct(stacks.map((imaterial) -> {
++            return imaterial.asItem().builtInRegistryHolder();
++        }).toList()));
+     }
+ 
+-    public static Ingredient of(HolderSet<Item> items) {
+-        return new Ingredient(items);
++    public static Ingredient of(HolderSet<Item> tag) {
++        return new Ingredient(tag);
+     }
+ 
+     public SlotDisplay display() {
+@@ -130,23 +148,25 @@ public final class Ingredient implements StackedContents.IngredientInfo<io.paper
+             return new SlotDisplay.Composite(this.itemStacks().stream().<SlotDisplay>map(SlotDisplay.ItemStackSlotDisplay::new).toList());
+         }
+         // Paper end - show exact ingredients in recipe book
+-        return (SlotDisplay)this.values
+-            .unwrap()
+-            .map(SlotDisplay.TagSlotDisplay::new, list -> new SlotDisplay.Composite(list.stream().map(Ingredient::displayForSingleItem).toList()));
++        return (SlotDisplay) this.values.unwrap().map(SlotDisplay.TagSlotDisplay::new, (list) -> {
++            return new SlotDisplay.Composite(list.stream().map(Ingredient::displayForSingleItem).toList());
++        });
+     }
+ 
+     public static SlotDisplay optionalIngredientToDisplay(Optional<Ingredient> ingredient) {
+-        return ingredient.map(Ingredient::display).orElse(SlotDisplay.Empty.INSTANCE);
++        return (SlotDisplay) ingredient.map(Ingredient::display).orElse(SlotDisplay.Empty.INSTANCE);
+     }
+ 
+-    private static SlotDisplay displayForSingleItem(Holder<Item> item) {
+-        SlotDisplay slotDisplay = new SlotDisplay.ItemSlotDisplay(item);
+-        ItemStack craftingRemainder = item.value().getCraftingRemainder();
+-        if (!craftingRemainder.isEmpty()) {
+-            SlotDisplay slotDisplay1 = new SlotDisplay.ItemStackSlotDisplay(craftingRemainder);
+-            return new SlotDisplay.WithRemainder(slotDisplay, slotDisplay1);
++    private static SlotDisplay displayForSingleItem(Holder<Item> displayedItem) {
++        SlotDisplay.ItemSlotDisplay slotdisplay_d = new SlotDisplay.ItemSlotDisplay(displayedItem);
++        ItemStack itemstack = ((Item) displayedItem.value()).getCraftingRemainder();
++
++        if (!itemstack.isEmpty()) {
++            SlotDisplay.ItemStackSlotDisplay slotdisplay_f = new SlotDisplay.ItemStackSlotDisplay(itemstack);
++
++            return new SlotDisplay.WithRemainder(slotdisplay_d, slotdisplay_f);
+         } else {
+-            return slotDisplay;
++            return slotdisplay_d;
+         }
+     }
+ }
