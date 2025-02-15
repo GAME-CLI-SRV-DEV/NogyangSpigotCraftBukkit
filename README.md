@@ -1,4 +1,4 @@
-# 유니버설크래프트
+# 녹양스피곳크래프트버킷
 로고파일 다운로드: https://github.com/user-attachments/assets/ca90d992-5590-4373-8e49-16e0610cf991
 
 NogyangSpigot is a Fork Of Paper and Spigot with Glowkit Patches and Sponge API, Rainbow API(PluginReference In Project Rainbow) Integrated on it, Made By Student of Nogyang Middle School.\
@@ -22,9 +22,9 @@ NogyangSpigotCraftBukkit-Bundler-25w07a-R0.1-SNAPSHOT-Mojmap.jar (바닐라 버�
 ```
 
 # 안내
-Paperweight 1.7.7의 사용은 스냅샷 버전에서 더 이상 없을 것이며, Paperweight 2로 업그레이드 되는 즉시 저장소가 재구조에 들어갑니다.\
-Spigot API와 Paper API가 점점 분리되면서, NogyangSpigot는 브랜드를 UniversalCraft, 유니버설크래프트로 전환하는 중입니다.\
-유니버설크래프트의 브랜드는 사실상 하드포크와 다름이 없지만, 각자의 호환성은 유지하게됩니다.
+Spigot API와 Paper API가 점점 분리되면서, Paper에는 Spigot 기능이 추가되지 않습니다.\
+현재 스피곳과 페이퍼를 이중 지원하는 시스템은 녹양스피곳 밖에 없으며, 요즘은 재난독화 서버가 아닌 바닐라 매핑 서버를 쓰는 추세입니다.\
+
 
 | 스피곳 플러그인 | 페이퍼 플러그인 | 스펀지 플러그인 |
 |-|-|-|
