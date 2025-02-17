@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Outfit7TSB <sunnybunnies09@naver.com>
+Date: Mon, 17 Feb 2025 19:27:34 +0900
+Subject: [PATCH] line-kill 4
+
+For Revolution!
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 251f29d5a9febec8d1681906fdc6fd25e3935c9e..74734120d68c5a7264f4142f079f85333f4a04cc 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -29,6 +29,10 @@ abstract class MockitoAgentProvider : CommandLineArgumentProvider {
+     maven {
+         url = uri("https://jitpack.io")
+     }
++	
++	maven {
++        url = uri("https://bitbucket.org/kangarko/libraries/raw/master")	
++	}
+  
+  }
+ 
