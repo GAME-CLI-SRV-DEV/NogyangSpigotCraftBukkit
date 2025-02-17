@@ -1,0 +1,24 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Outfit7TSB <sunnybunnies09@naver.com>
+Date: Tue, 18 Feb 2025 01:33:55 +0900
+Subject: [PATCH] get rid of slf4j-api and jna off
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index ac205f2ba974580dc5a1cf95886c8b66d85cf6e5..7eeac404489e1a813cd461b6d5cec1b6cda678d2 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -35,10 +35,12 @@ repositories {
+ }
+ 
+ dependencies {
++    implementation(project(":NogyangSpigot-API")) // 버킷-스피곳-페이퍼-레인보우 통합 API
+     implementation("com.github.kangarko:Foundation:6.9.17") { // 버킷 API 부트스트랩(신)
+ 	        exclude(group = "io.papermc.paper", module = "paper-api") // Paper-API 제거(Paper-API가 Conflict될 위험 존재)
++			exclude(group = "net.java.dev.jna", module = "jna")
++            exclude(group = "org.slf4j", module = "slf4j-api")
+     } // Paper-API 제거(Paper-API가 Conflict될 위험 존재)
+-    implementation(project(":NogyangSpigot-API")) // 버킷-스피곳-페이퍼-레인보우 통합 API
+     implementation("ca.spottedleaf:concurrentutil:0.0.3") // Paper - Add ConcurrentUtil dependency
+     // Paper start
+     implementation("org.jline:jline-terminal-ffm:3.27.1") // use ffm on java 22+

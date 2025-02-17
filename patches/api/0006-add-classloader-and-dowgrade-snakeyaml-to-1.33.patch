@@ -1,0 +1,32 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Outfit7TSB <sunnybunnies09@naver.com>
+Date: Tue, 18 Feb 2025 01:33:07 +0900
+Subject: [PATCH] add classloader and dowgrade snakeyaml to 1.33
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index b5d8645ce826940b7e257cd0bc3795798f2be98e..e31f96c0239ceee9f28bb735a46bf0490fe89180 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -63,7 +63,7 @@ dependencies {
+     }
+ 	api("net.md-5:bungeecord-config:$bungeeCordChatVersion")
+     // Paper - adventure
+-    api("org.yaml:snakeyaml:2.2")
++    api("org.yaml:snakeyaml:1.33")
+     api("org.joml:joml:1.10.8") {
+         isTransitive = false // https://github.com/JOML-CI/JOML/issues/352
+     }
+diff --git a/src/main/java/org/bukkit/configuration/file/YamlConfiguration.java b/src/main/java/org/bukkit/configuration/file/YamlConfiguration.java
+index ed81e850b22b83ac872707daf3c7d5d0cac6176b..d5c7eb8da0adf01cbbf35cf774fccb086f8050ba 100644
+--- a/src/main/java/org/bukkit/configuration/file/YamlConfiguration.java
++++ b/src/main/java/org/bukkit/configuration/file/YamlConfiguration.java
+@@ -62,7 +62,7 @@ public class YamlConfiguration extends FileConfiguration {
+         yamlLoaderOptions.setMaxAliasesForCollections(Integer.MAX_VALUE); // SPIGOT-5881: Not ideal, but was default pre SnakeYAML 1.26
+         yamlLoaderOptions.setCodePointLimit(Integer.MAX_VALUE); // SPIGOT-7161: Not ideal, but was default pre SnakeYAML 1.32
+         yamlLoaderOptions.setNestingDepthLimit(100); // SPIGOT-7906: The default limit (50) can be easily reached with nested bundles
+-
++        ClassLoader yamlClassLoader = Yaml.class.getClassLoader();
+         constructor = new YamlConstructor(yamlLoaderOptions);
+         representer = new YamlRepresenter(yamlDumperOptions);
+         representer.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
