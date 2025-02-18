@@ -36,6 +36,9 @@ jobs:
     
     - name: approve
       run: chmod +x ./gradlew
+
+    - name: Patch with Paperweight
+      run: ./gradlew applypatches
       
     - name: Build with Gradle Wrapper
       run: ./gradlew createreobfpaperclipjar
