@@ -6,12 +6,6 @@ Paper와 Spigot을 포크한 뒤 스펀지 API, 레인보우 API, 글로우킷 �
 Copyright (C) 2022-2025, Approximaster Studios 2004. All Rights Reversed.
 녹양중 학생이 만들었습니다.
 
-# We will not diverge from spigot. / Spigot으로부터 떨어져나가지 않겠습니다.
-on Dec 13 2024, Paper Hardforked Spigot, and Paper and Spigot is Diverging.\
-But we will not Diverge from spigot, whether no one forks Our Bukkit, we will not diverge.\
-2024년 12월 13일, Paper가 Spigot을 하드포크, Spigot의 업데이트를 반영하지 않음에 따라 Paper와 Spigot은 떨어져나가고 있습니다.\
-우리는 떨어져나가지 않을 겁니다. 우리 버킷의 자기 버전 만드는 이 없더래도 떨어져나가지 않을 겁니다.
-
 # 컴파일 절차
 NogyangSpigotCraftBukkit JAR는 배포되지 않기 때문에, 직접 컴파일해야 합니다.\
 `gradlew applypatches`로 패치를 적용한뒤\
