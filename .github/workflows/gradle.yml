@@ -46,6 +46,24 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew createreobfpaperclipjar
 
+    - name: release
+      uses: actions/create-release@v1
+      id: create_release
+      with:
+        draft: false
+        prerelease: false
+        release_name: ${{ steps.version.outputs.version }}
+        tag_name: ${{ github.ref }}
+        body_path: CHANGELOG.md
+        
+    - name: upload linux artifact
+      uses: actions/upload-release-asset@v1
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/libs/NogyangSpigotCraftBukkit-Paperclip-1.21.4-R0.1-SNAPSHOT-reobf.jar
+          asset_name: NogyangSpigotCraftBukkit Release
+          asset_content_type: application/jar
+
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
