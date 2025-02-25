@@ -9,6 +9,6 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
 }
 
-rootProject.name = "NogyangSpigotCraftBukkit"
+rootProject.name = "OneKoreaSpigotCraftBukkit"
 
-include("NogyangSpigot-API", "NogyangSpigotCraftBukkit-Server")
+include("OneKorea-API", "OneKorea-Server")
