@@ -1,3 +1,4 @@
 [submodule "work/Paper"]
 	path = work/Paper
-	url = https://github.com/GAME-CLI-SRV-DEV/Paper
+	url = https://github.com/GAME-CLI-SRV-DEV/PaperSpigot.git
+	branch = ver-1.21.4-b-cb-1

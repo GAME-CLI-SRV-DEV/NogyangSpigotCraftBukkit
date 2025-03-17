@@ -53,6 +53,7 @@ subprojects {
 }
 
 val paperDir = layout.projectDirectory.dir("work/Paper")
+val spongeDir = layout.projectDirectory.dir("work/SpongeAPI") // 스펀지 예비 등록
 val initSubmodules by tasks.registering {
     outputs.upToDateWhen { false }
     doLast {
