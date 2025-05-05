@@ -6,3 +6,4 @@
 # 현재 작업
 - [ ] 버킷 기능 향상
 - [ ] Spigot+Paper 업데이트 반영
+- [ ] Foundation API 적용
