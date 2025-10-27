@@ -61,7 +61,7 @@ val initSubmodules by tasks.registering {
 }
 
 paperweight {
-    serverProject = project(":NogyangSpigotCraftBukkit-Server")
+    serverProject = project(":NogyangSpigot-Server")
 
     remapRepo = paperMavenPublicUrl
     decompileRepo = paperMavenPublicUrl
