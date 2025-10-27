@@ -5,7 +5,7 @@ plugins {
     `maven-publish`
 
     // In general, keep this version in sync with upstream. Sometimes a newer version than upstream might work, but an older version is extremely likely to break.
-    id("io.papermc.paperweight.patcher") version "1.7.7"
+    id("io.papermc.paperweight.patcher") version "1.7.7" // upstream is Pre-hardfork version of Paper aka PaperSpigot. so we choose 1.7.7.
 }
 
 val paperMavenPublicUrl = "https://repo.papermc.io/repository/maven-public/"
@@ -53,7 +53,6 @@ subprojects {
 }
 
 val paperDir = layout.projectDirectory.dir("work/Paper")
-val spongeDir = layout.projectDirectory.dir("work/SpongeAPI") // 스펀지 예비 등록
 val initSubmodules by tasks.registering {
     outputs.upToDateWhen { false }
     doLast {
@@ -83,7 +82,7 @@ paperweight {
                 register("server") {
                     upstreamDir = paperDir.dir("Paper-Server")
                     patchDir = layout.projectDirectory.dir("patches/server")
-                    outputDir = layout.projectDirectory.dir("NogyangSpigotCraftBukkit-Server")
+                    outputDir = layout.projectDirectory.dir("NogyangSpigot-Server")
                     importMcDev = true
                 }
                 register("generatedApi") {
