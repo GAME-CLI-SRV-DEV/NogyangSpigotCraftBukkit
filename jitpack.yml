@@ -1,0 +1,7 @@
+jdk:
+  - openjdk21
+before_install:
+  - git init
+  - git config --global user.name "Approximaster's JitPack 2004"
+  - git config --global jitpack-email-override@approximasterstudios2004.ddnsgeek.com
+  - ./gradlew applypatches
