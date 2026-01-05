@@ -94,4 +94,30 @@ paperweight {
             }
         }
     }
+
+allprojects {
+    // Publishing API:
+    // ./gradlew :ForkTest-API:publish[ToMavenLocal]
+    repositories {
+        maven {
+            name = "central"
+            url = uri("https://central.sonatype.com/publish/release")
+            credentials {
+                username = findProperty("centralUsername") as String
+                password = findProperty("centralPassword") as String
+            }
+        }
+    }
+}
+
+publishing {
+    // Publishing dev bundle:
+    // ./gradlew publishDevBundlePublicationTo(MavenLocal|MyRepoSnapshotsRepository) -PpublishDevBundle
+    if (project.hasProperty("publishDevBundle")) {
+        publications.create<MavenPublication>("devBundle") {
+            artifact(tasks.generateDevelopmentBundle) {
+                artifactId = "dev-bundle"
+            }
+        }
+    }
 }
