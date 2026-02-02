@@ -8,6 +8,7 @@ such as <a href="https://github.com/kangarko/Foundation"><img width="150" height
 - [ ] add Nukkit API
 - [ ] add Glowstone API
 - [ ] add Rainbow API Compatibility
+- [ ] add config options
 
 # Task
 make a test plugin that utlilzes foundation\
