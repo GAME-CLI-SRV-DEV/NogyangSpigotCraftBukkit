@@ -1,5 +1,5 @@
 # NogyangSpigotCraftBukkit(NogyangSpigot Reobf+Mojmap, 1.21.4-1.21.11)
-
+![1000016478](https://github.com/user-attachments/assets/ca90d992-5590-4373-8e49-16e0610cf991)
 The Pre-Hardfork Paper(aka PaperSpigot) Fork which added a amazing functions.\
 such as <a href="https://github.com/kangarko/Foundation"><img width="150" height="30" alt="스크린샷 2026-01-31 222234" src="https://github.com/user-attachments/assets/295e6a12-03cb-450c-acac-cc3924076681" />
 
@@ -25,3 +25,6 @@ update 1.21.11
 
 # Notice
 This fork Follows Spigot's Versioning System. still, it wont effect the most plugins.
+
+# Copyright
+"녹양중학교 Shield Logo", "녹양중학교 Ginkgo leaf circle logo" is Property of Nogyang Middle School, Uijeongbu City, Gyeonggi-do, Republic of Korea.
