@@ -3,6 +3,8 @@
 The Pre-Hardfork Paper(aka PaperSpigot) Fork which added a amazing functions.\
 such as <a href="https://github.com/kangarko/Foundation"><img width="150" height="30" alt="스크린샷 2026-01-31 222234" src="https://github.com/user-attachments/assets/295e6a12-03cb-450c-acac-cc3924076681" />
 
+저희 스튜디오 최초의 버킷입니다. 서버에 BKCommonLib과 foundation을 추가해 API 정확도를 높여줍니다. 저희 서버는 플러그인을 Reobf 매핑으로 제공되나 Mojmap 버전도 호환됩니다.
+
 # Update 1.21.4
 
 - [ ] add Nukkit API
