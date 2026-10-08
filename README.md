@@ -7,7 +7,8 @@ such as <a href="https://github.com/kangarko/Foundation"><img width="150" height
 
 # Update 1.21.4
 
-- [ ] add Nukkit API
+- [ ] add Bukkit API Updates on Paper
+- [ ] add Spigot API Updates to Paper 
 - [ ] add Glowstone API
 - [ ] add Rainbow API Compatibility
 - [ ] add config options
